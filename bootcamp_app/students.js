@@ -13,7 +13,8 @@ pool
 SELECT students.id as student_id, students.name as name, cohorts.name as cohort
 FROM students
 JOIN cohorts ON cohorts.id = cohort_id
-LIMIT 5;
+WHERE cohorts.name LIKE '%${process.argv[2]}%'
+LIMIT ${process.argv[3] || 5};
 `
   )
   .then((res) => {
